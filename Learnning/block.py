@@ -1,4 +1,4 @@
-from datatime import datatime
+from datetime import datetime
 from hashlib import sha256
 
 '''
@@ -11,7 +11,7 @@ from hashlib import sha256
 
 class Block(object):
     def __init__(self, transactions, previous_hash, nonce):
-        self.timestamp = datatime.now()
+        self.timestamp = datetime.now()
         self.transactions = transactions
         self.previous_hash = previous_hash
         self.nonce = nonce
