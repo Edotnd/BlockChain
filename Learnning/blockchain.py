@@ -18,6 +18,20 @@ class BlockChain(object):
         self.chain.append(new_block)
         return proof, new_block
 
+    def validate_chain(self):
+        for i in range(1, len(self.chain)):
+            current = self.chain[i]
+            previous = self.chain[i-1]
+            if current.hash != current.generate_hash():
+                print("[!] 블록의 현재 해시가 블록의 생성된 해시와 같지 않습니다.")
+                return False
+            if previous.hash != previous.generate_hash():
+                print("[!] 이전 블록의 해시는 현재 블록에 저장된 이전 해시 값과 일치하지 않습니다.")
+                return False
+            if current.previous_hash != previous.hash:
+                return False
+        return True
+        
     def proof_of_work(self, block, difficulty=2):
         proof = block.generate_hash()
 
