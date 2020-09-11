@@ -10,7 +10,7 @@ from hashlib import sha256
 '''
 
 class Block(object):
-    def __init__(self, transactions, previous_hash, nonce):
+    def __init__(self, transactions, previous_hash, nonce=0):
         self.timestamp = datetime.now()
         self.transactions = transactions
         self.previous_hash = previous_hash
@@ -23,5 +23,5 @@ class Block(object):
         block_hash = sha256(block_contents.encode())
         return block_hash.hexdigest()
 
-    
-    
+    def print_block(self):
+        pass
