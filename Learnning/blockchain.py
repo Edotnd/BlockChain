@@ -10,11 +10,20 @@ class BlockChain(object):
         block = Block(transaction, 0)
         self.chain.append(block)
         return self.chain
-    
+
+    def add_block(self, transactions):
+        previous_block_hash = self.chain[len(self.chain)-1].hash
+        new_block = Block(transactions, previous_block_hash)
+        proof = self.proof_of_work(new_block)
+        self.chain.append(new_block)
+        return proof, new_block
+
     def proof_of_work(self, block, difficulty=2):
         proof = block.generate_hash()
 
         while proof[:2] != '0'*difficulty:
             block.nonce += 1
-            
-# https://seulcode.tistory.com/405
+            proof = block.generate_hash()
+        return proof
+
+    

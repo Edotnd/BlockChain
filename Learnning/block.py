@@ -24,4 +24,6 @@ class Block(object):
         return block_hash.hexdigest()
 
     def print_block(self):
-        pass
+        print("timestamp:", self.timestamp)
+        print("transactions:", self.transactions)
+        print("current hash:", self.generate_hash())
