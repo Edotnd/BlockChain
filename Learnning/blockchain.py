@@ -4,10 +4,11 @@ class BlockChain(object):
     def __init__(self):
         self.chain = [] # 모든 블록 저장
         self.all_transactions = [] # chain과 모든 transaction 데이터를 저장
+        self.genesis_block()
 
     def genesis_block(self):
         transactions = {}
-        block = Block(transaction, 0)
+        block = Block(transactions, 0)
         self.chain.append(block)
         return self.chain
 
@@ -39,5 +40,3 @@ class BlockChain(object):
             block.nonce += 1
             proof = block.generate_hash()
         return proof
-
-    
